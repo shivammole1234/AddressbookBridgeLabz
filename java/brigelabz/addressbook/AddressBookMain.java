@@ -7,34 +7,74 @@ public class AddressBookMain {
         AddressBook addressBook=new AddressBook();
         Scanner scanner = new Scanner(System.in);
 
+        while(true){
 
-        System.out.println("Enter First Name: ");
-        String first_name = scanner.nextLine();
-        System.out.println("Enter Last Name: ");
-        String last_name = scanner.nextLine();
-        System.out.println("Enter Address: ");
-        String address = scanner.nextLine();
-        System.out.println("Enter City: ");
-        String city = scanner.nextLine();
-        System.out.println("Enter State: ");
-        String state = scanner.nextLine();
-        System.out.println("Enter ZIP Code: ");
-        int zip = scanner.nextInt();
-        System.out.println("Enter Phone Number: ");
-        long phone_number = scanner.nextLong();
-        scanner.nextLine();
-        System.out.println("Enter Email: ");
-        String email = scanner.nextLine();
+            System.out.println("Choose an option:");
+            System.out.println("1. Add new contact");
+            System.out.println("2. Edit contact");
+            System.out.println("3. Display All cotacts");
+            System.out.println("4. EXit");
+            System.out.println("Enter the choice:- ");
+            int choise = scanner.nextInt();
+            scanner.nextLine();
 
-        // ceating the object of contact
-        Contact contact =new Contact(first_name,last_name,address,city,state,zip,phone_number,email);
+            switch (choise){
 
-        addressBook.add_contact(contact); // adding it to addressbook via object in list
-        System.out.println("contact added successfully");
-        System.out.println("All contact are:-");
-        addressBook.display_contact();// display all contact
+                case 1:
+                    // add new contact
+                    System.out.print("First Name: ");
+                    String firstName = scanner.nextLine();
+                    System.out.print("Last Name: ");
+                    String lastName = scanner.nextLine();
+                    System.out.print("Address: ");
+                    String address = scanner.nextLine();
+                    System.out.print("City: ");
+                    String city = scanner.nextLine();
+                    System.out.print("State: ");
+                    String state = scanner.nextLine();
+                    System.out.print("ZIP Code: ");
+                    int zip = scanner.nextInt();
+                    System.out.print("Phone Number: ");
+                    long phoneNumber = scanner.nextLong();
+                    scanner.nextLine();
+                    System.out.print("Email: ");
+                    String email = scanner.nextLine();
 
+                    Contact newContact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+                    addressBook.add_contact(newContact);
+                    System.out.println("contact added successfully!");
+                    break;
 
+                case 2:
+                    // edit contact
+                    System.out.println("emter the first name to search contact for edit");
+                    String edit_first_name=scanner.nextLine();
 
+                    boolean is_edited= addressBook.edit_contact(edit_first_name);
+                    if(is_edited)
+                        System.out.println("contact updated");
+                    else
+                        System.out.println("contact not found");
+
+                    break;
+
+                case 3:
+                    // display all contact
+
+                    System.out.println("All Contact");
+                    addressBook.display_contact();
+                    break;
+
+                case 4:
+                    // exit the program
+                    System.out.println("exiting the program");
+                    scanner.close();
+                    return; // this statement exit the main method
+
+                default:
+                    System.out.println("invalid coise.please select a valid option");
+                    break;
+            }
+        }
     }
 }
