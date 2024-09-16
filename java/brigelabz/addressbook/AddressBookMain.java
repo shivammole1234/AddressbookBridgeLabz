@@ -30,7 +30,8 @@ public class AddressBookMain {
         Contact contact =new Contact(first_name,last_name,address,city,state,zip,phone_number,email);
 
         addressBook.add_contact(contact); // adding it to addressbook via object in list
-
+        System.out.println("contact added successfully");
+        System.out.println("All contact are:-");
         addressBook.display_contact();// display all contact
 
 
