@@ -1,5 +1,6 @@
 package brigelabz.addressbook;
 import  java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -28,29 +29,76 @@ public class AddressBook {
     public boolean edit_contact(String first_name){
         Contact contact = find_contact_by_first_name(first_name);
         if(contact != null){
-            // add new details
             Scanner scanner = new Scanner(System.in);
             System.out.println("Editing contact for " + first_name);
-            System.out.print("Enter new Last Name: ");
-            contact.setLast_name(scanner.nextLine());
-            System.out.print("Enter new Address: ");
-            contact.setAddress(scanner.nextLine());
-            System.out.print("Enter new City: ");
-            contact.setCity(scanner.nextLine());
-            System.out.print("Enter new State: ");
-            contact.setState(scanner.nextLine());
-            System.out.print("Enter new ZIP Code: ");
-            contact.setZip(scanner.nextInt());
-            System.out.print("Enter new Phone Number: ");
-            contact.setPhoneNumber(scanner.nextLong());
-            scanner.nextLine(); // Consume newline
-            System.out.print("Enter new Email: ");
-            contact.setEmail(scanner.nextLine());
 
+            System.out.println("Choose detail to edit:");
+            System.out.println("1. Last Name");
+            System.out.println("2. Address");
+            System.out.println("3. City");
+            System.out.println("4. State");
+            System.out.println("5. ZIP Code");
+            System.out.println("6. Phone Number");
+            System.out.println("7. Email");
+            System.out.println("8. Exit");
+
+            int editChoice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (editChoice) {
+                case 1:
+                    System.out.print("Enter new Last Name: ");
+                    contact.setLast_name(scanner.nextLine());
+                    break;
+                case 2:
+                    System.out.print("Enter new Address: ");
+                    contact.setAddress(scanner.nextLine());
+                    break;
+                case 3:
+                    System.out.print("Enter new City: ");
+                    contact.setCity(scanner.nextLine());
+                    break;
+                case 4:
+                    System.out.print("Enter new State: ");
+                    contact.setState(scanner.nextLine());
+                    break;
+                case 5:
+                    System.out.print("Enter new ZIP Code: ");
+                    contact.setZip(scanner.nextInt());
+                    scanner.nextLine(); // Consume newline
+                    break;
+                case 6:
+                    System.out.print("Enter new Phone Number: ");
+                    contact.setPhoneNumber(scanner.nextLong());
+                    scanner.nextLine(); // Consume newline
+                    break;
+                case 7:
+                    System.out.print("Enter new Email: ");
+                    contact.setEmail(scanner.nextLine());
+                    break;
+                case 8:
+                    return false; // Exit the method
+                default:
+                    System.out.println("Invalid choice. No changes made.");
+                    break;
+            }
             return true; // updated
         } else{
             return false;  // updatation failed
         }
+    }
+
+    // methid to delete contact
+    public boolean delete_contact(String first_name){
+        Iterator<Contact> iterator = contacts.iterator();
+        while (iterator.hasNext()){
+            Contact contact  = iterator.next();
+            if(contact.get_first_name().equalsIgnoreCase(first_name)){
+                iterator.remove();
+                return true;// contact delted
+            }
+        }
+        return false; // contact not found
     }
 
 
@@ -68,3 +116,4 @@ public class AddressBook {
     }
 
 }
+

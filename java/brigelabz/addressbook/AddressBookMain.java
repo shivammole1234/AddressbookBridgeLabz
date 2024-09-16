@@ -7,13 +7,18 @@ public class AddressBookMain {
         AddressBook addressBook=new AddressBook();
         Scanner scanner = new Scanner(System.in);
 
+        addressBook.add_contact(new Contact("John", "Doe", "123 Elm Street", "Springfield", "IL", 62701, 5551234, "john.doe@example.com"));
+        addressBook.add_contact(new Contact("Jane", "Smith", "456 Oak Avenue", "Springfield", "IL", 62701, 5555678, "jane.smith@example.com"));
+
+
         while(true){
 
             System.out.println("Choose an option:");
-            System.out.println("1. Add new contact");
-            System.out.println("2. Edit contact");
-            System.out.println("3. Display All cotacts");
-            System.out.println("4. EXit");
+            System.out.println("1. Add New Contact");
+            System.out.println("2. Edit Contact");
+            System.out.println("3. Delete Contact");
+            System.out.println("4. Display All Contacts");
+            System.out.println("5. Exit");
             System.out.println("Enter the choice:- ");
             int choise = scanner.nextInt();
             scanner.nextLine();
@@ -59,13 +64,26 @@ public class AddressBookMain {
                     break;
 
                 case 3:
+                    // delete contact
+                    System.out.println("emter the first name of contact to delete:");
+                    String delete_first_name = scanner.nextLine();
+
+                    boolean is_deleted = addressBook.delete_contact(delete_first_name);
+                    if(is_deleted){
+                        System.out.println("contact deleted successfully");
+                    }else {
+                        System.out.println("contact not found");
+                    }
+                    break;
+
+                case 4:
                     // display all contact
 
                     System.out.println("All Contact");
                     addressBook.display_contact();
                     break;
 
-                case 4:
+                case 5:
                     // exit the program
                     System.out.println("exiting the program");
                     scanner.close();
