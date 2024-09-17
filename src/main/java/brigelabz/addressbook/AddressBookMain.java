@@ -20,7 +20,6 @@ public class AddressBookMain {
             System.out.println("4. Delete Contact");
             System.out.println("5. Display All Contacts");
             System.out.println("6. Exit");
-
             System.out.println("Enter the choice:- ");
             int choise = scanner.nextInt();
             scanner.nextLine();
